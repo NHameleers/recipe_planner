@@ -51,12 +51,24 @@ def ingredient_list(request):
 	all_ingredients_list = Ingredient.objects.all()
 	context = {'all_ingredients_list': all_ingredients_list}
 
-	results = request.POST.getlist('ingredient')
+	ingredients = request.POST.getlist('ingredients')
 
-	if results and request.method == 'POST':
-		context.update({'results': results})
+	recipes = set()
+
+	for ingredient in ingredients:
+		ingred = Ingredient.objects.get(name=ingredient)
+		recipes_with_ingredient = ingred.recipes.all()
+		for recipe in recipes_with_ingredient:
+			recipes.add(recipe.name)
+
+	if recipes and request.method == 'POST':
+		context.update({'recipes': recipes})
 
 	return render(request, 'recipe_planner/ingredient_list.html', context)
+
+
+
+
 
 
 def search_ingredient(request):
