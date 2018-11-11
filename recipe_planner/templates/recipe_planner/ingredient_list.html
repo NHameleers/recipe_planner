@@ -1,0 +1,47 @@
+{% extends 'recipe_planner/base.html' %}
+
+{% block content %}
+
+
+<h2>Ingredient list! </h2>
+
+
+
+
+{% if all_ingredients_list %}
+    <form id="searchform"  method="post" action="" accept-charset="utf-8">
+    {% csrf_token %}
+
+    {% for ingredient in all_ingredients_list %}
+    	<input type="radio" name="ingredient" id="ingredient{{ingredient.id}}" value="ingredient.id">
+        <label for="ingredient{{ingredient.id}}"><a href="{% url 'recipe_planner:ingredient_detail' ingredient.id %}">{{ ingredient.name|title }}</a></label><br>
+    {% endfor %}
+    <input type="submit" value="Find recipes">
+
+    </form>
+
+{% else %}
+    <p>No ingredients are available.</p>
+{% endif %}
+
+
+
+
+{% for ingredient in results %}
+
+
+  <h3>Recipes with {{ingredient.name}}</h3>
+
+<!--     <ul>
+    {% for recipe in ingredient.recipes.all %}
+        <li><a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|title }}</a></li>
+    {% endfor %}
+    </ul> -->
+
+
+{% endfor %}
+
+<br>
+
+
+{% endblock %}

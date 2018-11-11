@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<h1>Recipe Planner! </h1>
+
+<nav>
+	<a href="{% url 'recipe_planner:index' %}">Home</a>
+	<a href="{% url 'recipe_planner:ingredient_list' %}">All ingredients</a>
+	<a href="{% url 'recipe_planner:search_ingredient' %}">Search ingredient</a>
+	
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</html>

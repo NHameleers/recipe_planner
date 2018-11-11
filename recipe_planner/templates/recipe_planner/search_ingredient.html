@@ -1,0 +1,29 @@
+{% extends 'recipe_planner/base.html' %}
+
+{% block content %}
+
+<br>
+<form id="searchform"  method="post" action="" accept-charset="utf-8">
+  {% csrf_token %}
+  Search ingredient:
+  <input id="searchbox" name="search_ingredient" type="text" placeholder="Search">
+  <input type="submit" value="OK">
+</form>
+
+    {% for ingredient in results %}
+
+
+      <h3>Recipes with {{ingredient.name}}</h3>
+
+        <ul>
+        {% for recipe in ingredient.recipes.all %}
+            <li><a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|title }}</a></li>
+        {% endfor %}
+        </ul>
+
+
+    {% endfor %}
+
+    <br>
+
+{% endblock %}

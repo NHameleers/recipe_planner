@@ -1,0 +1,14 @@
+{% extends 'recipe_planner/base.html' %}
+
+{% block content %}
+
+<h2>{{ recipe.name|title }}</h2>
+
+<h3>Ingredienten:</h3>
+<ul>
+{% for ingredient in recipe.ingredient_set.all %}
+    <li><a href="{% url 'recipe_planner:ingredient_detail' ingredient.id %}">{{ ingredient.name|title }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
