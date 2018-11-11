@@ -16,7 +16,7 @@
       <h3>Recipes with {{ingredient.name}}</h3>
 
         <ul>
-        {% for recipe in ingredient.recipes.all %}
+        {% for recipe in ingredient.recipe_set.all %}
             <li><a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|title }}</a></li>
         {% endfor %}
         </ul>

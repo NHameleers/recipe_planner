@@ -6,7 +6,7 @@
 
 <h3>Ingredienten:</h3>
 <ul>
-{% for ingredient in recipe.ingredient_set.all %}
+{% for ingredient in recipe.ingredients.all %}
     <li><a href="{% url 'recipe_planner:ingredient_detail' ingredient.id %}">{{ ingredient.name|title }}</a></li>
 {% endfor %}
 </ul>

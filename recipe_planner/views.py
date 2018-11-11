@@ -23,7 +23,7 @@ class IndexView(generic.ListView):
 	context_object_name = 'latest_recipe_list'
 
 	def get_queryset(self):
-		return Recipe.objects.order_by('-pk')
+		return Recipe.objects.order_by('last_in_menu')
 
 
 # def detail(request, recipe_id):
@@ -57,7 +57,7 @@ def ingredient_list(request):
 
 	for ingredient in ingredients:
 		ingred = Ingredient.objects.get(name=ingredient)
-		recipes_with_ingredient = ingred.recipes.all()
+		recipes_with_ingredient = ingred.recipe_set.all()
 		for recipe in recipes_with_ingredient:
 			recipes.add(recipe.name)
 
