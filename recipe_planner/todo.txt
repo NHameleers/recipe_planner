@@ -1,10 +1,7 @@
 
-add 'last time we ate this' field
+In all ingredients recipe search: sort by last_in_menu
 
 add 'cuisine' field
-
-ingredient search --> recipe list (implement so that it can be used for many ingredients and provide a list...)
-
 
 scrape ah-bonus for input in ingredient search
 
