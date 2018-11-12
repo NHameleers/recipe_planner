@@ -33,6 +33,7 @@ class Recipe(models.Model):
 	name = models.CharField(max_length=255)
 	ingredients = models.ManyToManyField(Ingredient)
 	last_in_menu = models.DateField('Last time this recipe was on menu', blank=True)
+	quisine = models.CharField(max_length=255)
 	# description = models.CharField(max_length=3000)
 
 
