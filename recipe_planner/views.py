@@ -51,18 +51,16 @@ def ingredient_list(request):
 	all_ingredients_list = Ingredient.objects.all()
 	context = {'all_ingredients_list': all_ingredients_list}
 
-	ingredients = request.POST.getlist('ingredients')
 
-	recipes = set()
+	# this works with the names instead of the ideas. Not the greatest solution,
+	# as it could run into trouble when names get duplicates. I was able to pass
+	# the id through from the template file (option --> value), but this is not
+	# working anymore.
+	ingredient_names = request.POST.getlist('ingredients')
 
-	for ingredient in ingredients:
-		ingred = Ingredient.objects.get(name=ingredient)
-		recipes_with_ingredient = ingred.recipe_set.all()
-		for recipe in recipes_with_ingredient:
-			recipes.add(recipe.name)
+	recipes = Recipe.objects.filter(ingredients__name__in=ingredient_names).distinct().order_by('last_in_menu')
 
-	if recipes and request.method == 'POST':
-		context.update({'recipes': recipes})
+	context.update({'recipes': recipes})
 
 	return render(request, 'recipe_planner/ingredient_list.html', context)
 
