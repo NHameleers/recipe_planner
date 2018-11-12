@@ -29,7 +29,7 @@
 
 <ul>
 {% for recipe in recipes %}
-    <li>{{ recipe }}</li>
+    <li><a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|title }}</a></li>
 {% endfor %}
 </ul>
 
