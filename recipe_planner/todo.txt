@@ -1,7 +1,5 @@
 
-In all ingredients recipe search: sort by last_in_menu
 
-add 'cuisine' field
 
 scrape ah-bonus for input in ingredient search
 

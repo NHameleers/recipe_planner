@@ -3,12 +3,16 @@
 
 {% block content %}
 
+{% load recipe_planner_extras %}
+
 	<h2>Recipe list</h2>
 	
 	{% if latest_recipe_list %}
 	    <ul>
 	    {% for recipe in latest_recipe_list %}
-	        <li><a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|title }}</a></li>
+	        <li>
+	        	<!-- shows 'x days ago' in front of recipe {{ recipe.last_in_menu|days_since }}:  -->
+	        	<a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|title }}</a></li>
 	    {% endfor %}
 	    </ul>
 	{% else %}
