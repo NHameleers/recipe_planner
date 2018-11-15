@@ -27,12 +27,44 @@
 
 
 
-<ul>
+
+<!-- 
+<form action="/action_page.php">
+  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
+  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
+  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br><br>
+  <input type="submit" value="Submit">
+</form>
+
+ -->
+<form method="post" action="" accept-charset="utf-8">
+{% csrf_token %}
 {% for recipe in recipes %}
-    <li><a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|capfirst }}</a></li>
+    <input type="checkbox" name="recipes_to_add" value="{{recipe.name}}">
+        <a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|capfirst }}</a><br>
+{% endfor %}
+    <input type="email" name="email_address">
+    <input type="submit" value="Create (and email) shopping list">
+</form>
+
+
+<ul>
+{% for ingr, amount in shopping_list %}
+    <li>{{amount}}x  {{ingr}}</li>
 {% endfor %}
 </ul>
 
+{{ email_message }}
+<!-- 
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <div class="form-actions">
+        
+        <button type="submit">Email shopping list</button>
+    </div>
+</form> -->
 
 
 {% endblock %}

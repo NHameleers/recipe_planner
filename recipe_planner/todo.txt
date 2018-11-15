@@ -1,5 +1,12 @@
 
 
+create shopping 'cart' functionality for the shopping list
+
+put the shopping list in a proper data structure so it can also be rendered well in html
+
+remove redundancy for shopping list functionality in index view and ingredient_list view
+
+
 
 scrape ah-bonus for input in ingredient search
 

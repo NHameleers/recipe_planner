@@ -8,15 +8,20 @@
 	<h2>Recipe list</h2>
 	
 	{% if latest_recipe_list %}
-	    <ul>
+	    <form method="post" action="" accept-charset="utf-8">
+		{% csrf_token %}
 	    {% for recipe in latest_recipe_list %}
-	        <li>
-	        	<!-- shows 'x days ago' in front of recipe {{ recipe.last_in_menu|days_since }}:  -->
-	        	<a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|title }}</a></li>
+        	<!-- shows 'x days ago' in front of recipe {{ recipe.last_in_menu|days_since }}:  -->
+        	<input type="checkbox" name="recipes_to_add" value="{{recipe.name}}">
+    		<a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|capfirst }}</a><br>
 	    {% endfor %}
-	    </ul>
+		    <input type="email" name="email_address">
+		    <input type="submit" value="Create (and email) shopping list">
+		</form>
 	{% else %}
 	    <p>No recipes are available.</p>
 	{% endif %}
+
+{{ email_message }}
 
 {% endblock %}
