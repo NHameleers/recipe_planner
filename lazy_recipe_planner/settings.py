@@ -127,3 +127,8 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'lazyrecipeplanner@gmail.com'
 EMAIL_HOST_PASSWORD = 'theresnothinghere'
+
+
+# https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Sessions
+# ensure updates within session are also automatically saved
+SESSION_SAVE_EVERY_REQUEST = True

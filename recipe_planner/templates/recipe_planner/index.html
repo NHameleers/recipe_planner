@@ -16,12 +16,15 @@
     		<a href="{% url 'recipe_planner:detail' recipe.id %}">{{ recipe.name|capfirst }}</a><br>
 	    {% endfor %}
 		    <input type="email" name="email_address">
-		    <input type="submit" value="Create (and email) shopping list">
+		    <input type="submit" value="Add to shopping list">
 		</form>
 	{% else %}
 	    <p>No recipes are available.</p>
 	{% endif %}
 
 {{ email_message }}
+
+
+<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
 
 {% endblock %}

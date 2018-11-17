@@ -1,0 +1,20 @@
+
+
+{% extends 'recipe_planner/base.html' %}
+
+{% block content %}
+
+<ul>
+{% for ingredient, amount in shopping_list %}
+    <li>{{amount}}x  {{ingredient}}</li>
+{% endfor %}
+</ul>
+
+<form method="post" action="" accept-charset="utf-8">
+{% csrf_token %}
+    <input type="email" name="email_address">
+    <input type="submit" value="Email shopping list">
+</form>
+
+
+{% endblock %}
