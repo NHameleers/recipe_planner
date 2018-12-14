@@ -3,6 +3,9 @@
 
 <h1>Recipe Planner! </h1>
 
+{% load static %}
+<link href="{% static 'recipe_planner/recipe_planner.css' %}" rel="stylesheet" type="text/css" >
+
 <nav>
 	<a href="{% url 'recipe_planner:index' %}">Home</a>
 	<a href="{% url 'recipe_planner:ingredient_list' %}">Recipe search</a>

@@ -34,8 +34,9 @@ def IndexView(request):
 		'shopping_list': shopping_list.items()})
 
 	# for the session shopping_list: work with the names, not the objects
-	shopping_list_names = Counter([ingredient.name for ingredient in ingredients_to_add])
-	request.session['shopping_list'] = Counter(request.session.get('shopping_list', {})) + shopping_list_names
+	shopping_list_names_counter = Counter([ingredient.name for ingredient in ingredients_to_add])
+	current_shopping_list_counter = Counter(request.session.get('shopping_list', {}))
+	request.session['shopping_list'] = current_shopping_list_counter + shopping_list_names_counter
 
 
 
@@ -104,6 +105,11 @@ def shopping_list(request):
 
 	context = {'shopping_list': sorted(shopping_list.items())}
 
+
+	# get most recent values of ingredients
+	for ingredient in shopping_list.keys():
+		new_amount = shopping_list[ingredient]
+		shopping_list[ingredient] = int(new_amount)
 
 	# control flow for sending shopping list to email
 	email_address = request.POST.get('email_address')

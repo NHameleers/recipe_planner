@@ -4,14 +4,11 @@
 
 {% block content %}
 
-<ul>
-{% for ingredient, amount in shopping_list %}
-    <li>{{amount}}x  {{ingredient}}</li>
-{% endfor %}
-</ul>
-
 <form method="post" action="" accept-charset="utf-8">
 {% csrf_token %}
+{% for ingredient, amount in shopping_list %}
+    <input type="number" name="{{ingredient}}" value="{{amount}}" min="0" size="3"><label>{{ingredient}}</label><br>
+{% endfor %}
     <input type="email" name="email_address">
     <input type="submit" value="Email shopping list">
 </form>
